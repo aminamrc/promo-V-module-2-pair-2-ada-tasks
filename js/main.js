@@ -17,12 +17,27 @@ const tasks = [
   ];
 
 
-  function handleclick (event) {
+
+function handleclick (event) {
     event.preventDefault ();
     const valuetask=inputAgrega.value;
-    listaTarea.innerHTML+= ` <li> ${valuetask}</li>` ;
+    listaTarea.innerHTML+= `<li class="js-li"><input type="checkbox"> ${valuetask}</li>`;
 
+    const elements = document.querySelector('.js-li');
   }
 
-  btnAgrega.addEventListener ('click', handleclick);
+ 
+btnAgrega.addEventListener ('click', handleclick);
+
+
+
+function handleTachado (event) {
+  const valuetask = event.target;
+  valuetask.classList.add('tachado');
+  
+  console.log(valuetask);
+}
+
+listaTarea.addEventListener ('click', handleTachado);
+
 
