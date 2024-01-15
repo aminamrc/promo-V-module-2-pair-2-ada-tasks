@@ -16,28 +16,37 @@ const tasks = [
     },
   ];
 
-
-
-function handleclick (event) {
-    event.preventDefault ();
-    const valuetask=inputAgrega.value;
-    listaTarea.innerHTML+= `<li class="js-li"><input type="checkbox"> ${valuetask}</li>`;
-
-    const elements = document.querySelector('.js-li');
-  }
-
- 
-btnAgrega.addEventListener ('click', handleclick);
-
-
-
-function handleTachado (event) {
-  const valuetask = event.target;
-  valuetask.classList.add('tachado');
   
-  console.log(valuetask);
-}
 
-listaTarea.addEventListener ('click', handleTachado);
+
+function renderTareas (array){
+for (let i = 0;i <array.length; i++){
+  
+    listaTarea.innerHTML+=`<li> <input type="checkbox"> ${array[i].name}</li>`;
+  }
+    }
+    renderTareas(tasks);
+
+
+/********** */
+
+
+// function handleclick (event) {
+//     event.preventDefault ();
+//     const valuetask=inputAgrega.value;
+//     listaTarea.innerHTML+= `<li class="js-li"><input type="checkbox"> ${valuetask}</li>`;
+
+//     const elements = document.querySelector('.js-li');
+//   }
+
+
+// function handleTachado (event) {
+//   const valuetask = event.target;
+//   valuetask.classList.add('tachado');
+  
+//   console.log(valuetask);
+// }
+
+// listaTarea.addEventListener ('click', handleTachado);
 
 
