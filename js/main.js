@@ -16,16 +16,44 @@ const tasks = [
     },
   ];
 
-  
 
+//  function renderTareas (tarea){
+//        let html = '';
+//         if(tarea.completed === true){
+//           html = `<li class = "tachado"> <input type="checkbox"> ${tarea.name}</li>`;
+    
+//         }else {
+//           html = `<li> <input type="checkbox"> ${tarea.name}</li>`;
+//         }
+//         console.log(html)
+//         listaTarea.innerHTML = 
+        
+//     }
+//     renderTareas()
+  
+// function checktask(tarea) {
+//   if (tasks.tarea.completed === true) {
+//     tarea.classlist.add('tachado');
+
+
+//   }
+// }
 
 function renderTareas (array){
-for (let i = 0;i <array.length; i++){
+  let html = '';
+for (let i = 0; i < array.length; i++){
   
-    listaTarea.innerHTML+=`<li> <input type="checkbox"> ${array[i].name}</li>`;
-  }
+    if(array[i].completed === true){
+      html += `<li class = "tachado"> <input type="checkbox" checked> ${array[i].name}</li>`;
+
+    }else {
+      html += `<li> <input type="checkbox"> ${array[i].name}</li>`;
     }
-    renderTareas(tasks);
+  }
+  listaTarea.innerHTML = html;
+}
+
+renderTareas(tasks);
 
 
 /********** */
