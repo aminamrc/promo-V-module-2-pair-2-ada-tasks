@@ -5,8 +5,10 @@ const btnAgrega = document.querySelector(".js-btn-add");
 const inputBuscar = document.querySelector(".js-text-task-filter");
 const btnBuscar = document.querySelector(".js-btn-filter");
 const listaTarea = document.querySelector(".js-task-list");
+const GITHUB_USER = '<tu_usuario_de_github_aqui>';
+const SERVER_URL = `https://dev.adalab.es/api/todo/${GITHUB_USER}`;
 
-const tasks = [
+let tasks = [
   { name: "Recoger setas en el campo", completed: true },
   { name: "Comprar pilas", completed: true },
   { name: "Poner una lavadora de blancos", completed: true },
@@ -63,6 +65,22 @@ function handlecheck (event){
 
 renderTasks(tasks);
 
+
+
+//
+// tasks = [];
+// fetch('https://dev.adalab.es/api/todo')
+//   .then((response) => response.json())
+//   .then((data) => {
+
+//     listaTarea.innerHTML = data.results.name;
+//     console.log(tasks);
+//   });
+// renderTasks(tasks);
+
+
+//Completa el código;
+ //Guarda la respuesta obtenida enla variable para el listado de tareas: `tasks`
 
 
 
