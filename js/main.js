@@ -23,6 +23,9 @@ function renderTareas (array){
 for (let i = 0;i <array.length; i++){
   
     listaTarea.innerHTML+=`<li> <input type="checkbox"> ${array[i].name}</li>`;
+    if (array [i].completed === true) {
+      
+    }
   }
     }
     renderTareas(tasks);
