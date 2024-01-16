@@ -1,11 +1,5 @@
 'use strict';
 
-const inputAgrega= document.querySelector ('.js-text-task-add');
-const btnAgrega= document.querySelector ('.js-btn-add'); 
-const inputBuscar =document.querySelector ('.js-text-task-filter');
-const btnBuscar = document.querySelector ('.js-btn-filter');
-const listaTarea =document.querySelector ('.js-task-list');
-
 const tasks = [
     { name: 'Recoger setas en el campo', completed: true },
     { name: 'Comprar pilas', completed: true },
@@ -15,39 +9,28 @@ const tasks = [
       completed: false,
     },
   ];
-
-
-//  function renderTareas (tarea){
-//        let html = '';
-//         if(tarea.completed === true){
-//           html = `<li class = "tachado"> <input type="checkbox"> ${tarea.name}</li>`;
-    
-//         }else {
-//           html = `<li> <input type="checkbox"> ${tarea.name}</li>`;
-//         }
-//         console.log(html)
-//         listaTarea.innerHTML = 
-        
-//     }
-//     renderTareas()
   
-// function checktask(tarea) {
-//   if (tasks.tarea.completed === true) {
-//     tarea.classlist.add('tachado');
+const inputAgrega= document.querySelector ('.js-text-task-add');
+const btnAgrega= document.querySelector ('.js-btn-add'); 
+const inputBuscar =document.querySelector ('.js-text-task-filter');
+const btnBuscar = document.querySelector ('.js-btn-filter');
+const listaTarea = document.querySelector ('.js-task-list');
 
 
-//   }
-// }
 
+//Primero pintamos las tareas en la lista que habíamos definido en el HTML usando JS. 
 function renderTareas (array){
   let html = '';
-for (let i = 0; i < array.length; i++){
+for (let i = 0; i < array.length; i++) {
+  //Otra forma de hacerlo: 
+  //let ckassCss = tasks[i].completed ? 'tachado' : null;
+  //listaTarea.innerHTML += `<li class= "${classCss}"> ${tasks[i].name}`</li>`
   
-    if(array[i].completed === true){
-      html += `<li class = "tachado"> <input type="checkbox" checked> ${array[i].name}</li>`;
+    if(array[i].completed /*=== true*/){
+      html += `<li class = "tachado"> <input type="checkbox" id="${i}" checked> ${array[i].name}</li>`;
 
     }else {
-      html += `<li> <input type="checkbox"> ${array[i].name}</li>`;
+      html += `<li> <input type="checkbox" class="js-check" id="${i}"> ${array[i].name}</li>`;
     }
   }
   listaTarea.innerHTML = html;
@@ -56,7 +39,28 @@ for (let i = 0; i < array.length; i++){
 renderTareas(tasks);
 
 
-/********** */
+const allCheckBox = document.querySelectorAll('.js-check');
+
+function handleCheck (event) {
+  const id = event.target.id;
+  console.log(id);
+  tasks[id].completed = !tasks[id].completed;
+  console.log(tasks);
+
+}
+
+for (const check of allCheckBox) {
+  check.addEventListener("change", handleCheck);
+
+}
+
+/*
+1. Pintar elementos en HTML
+2. Escuchar eventos
+3. Cambiar datos basados en el evento
+4. Volver a pintar
+5.Volver a escuchar
+*/
 
 
 // function handleclick (event) {
@@ -78,3 +82,13 @@ renderTareas(tasks);
 // listaTarea.addEventListener ('click', handleTachado);
 
 
+
+function handleFilter (event) {
+  event.preventDefault;
+  const valueInput = inputAgrega.value;
+  const arrayFilter = tasks.filter((task)=> task.name.includes(valueInput));
+  console.log(arrayFilter);
+  renderTareas(arrayFilter);
+}
+
+btnBuscar.addEventListener("click", handleFilter);
