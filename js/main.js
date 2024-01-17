@@ -8,15 +8,14 @@ const listaTarea = document.querySelector(".js-task-list");
 const GITHUB_USER = '<tu_usuario_de_github_aqui>';
 const SERVER_URL = `https://dev.adalab.es/api/todo/${GITHUB_USER}`;
 
-let tasks = [
-  { name: "Recoger setas en el campo", completed: true },
-  { name: "Comprar pilas", completed: true },
-  { name: "Poner una lavadora de blancos", completed: true },
-  {
-    name: "Aprender cómo se realizan las peticiones al servidor en JavaScript",
-    completed: false,
-  },
-];
+let tasks = [];
+ //{ name: "Recoger setas en el campo", completed: true },
+  //{ name: "Comprar pilas", completed: true },
+  //{ name: "Poner una lavadora de blancos", completed: true },
+  //{
+  //  name: "Aprender cómo se realizan las peticiones al servidor en JavaScript",
+  // completed: false,
+  //},
 // boton buscar, aqui le doy como parametro a rendertaks eñ array de filter
 
 function handlerFilter (event){
@@ -66,16 +65,26 @@ function handlecheck (event){
 renderTasks(tasks);
 
 
+//const GITHUB_USER = '<tu_usuario_de_github_aqui>';
+//const SERVER_URL = `https://dev.adalab.es/api/todo/${GITHUB_USER}`;
 
-//
-// tasks = [];
-// fetch('https://dev.adalab.es/api/todo')
-//   .then((response) => response.json())
-//   .then((data) => {
+//tasks = [];
+ console.log(tasks);
+fetch('https://dev.adalab.es/api/todo')
+.then((response) => response.json())
+.then((data) => {
+  //console.log(data.results.name);
+  tasks=data.results;
+  for (const tareas of data.results) { 
+    tasks.push(tareas.name);
+    console.log(tareas.name);
+    listaTarea.innerHTML += `<li> ${tareas.name} </li>`;
+  }
 
-//     listaTarea.innerHTML = data.results.name;
-//     console.log(tasks);
-//   });
+  
+//listaTarea.innerHTML = data.results.name;
+//console.log(tasks);
+ });
 // renderTasks(tasks);
 
 
